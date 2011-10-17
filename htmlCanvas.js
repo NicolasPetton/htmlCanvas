@@ -19,8 +19,8 @@ var htmlCanvas = (function() {
 
 		/* Adding new tags */
 
-		function newTag (string, attributes) {
-			return tagBrush({canvas: that, tag: string, attributes: attributes});
+		function newTag (tag, contents, attributes) {
+			return tagBrush({canvas: that, tag: tag, contents: contents, attributes: attributes});
 		};
 
 		function tag(string, attributes) {
@@ -35,8 +35,8 @@ var htmlCanvas = (function() {
 
 		for(var i=0; i < tags.length; i++) {
 			that[tags[i]] = (function(t) {
-				return function(attributes) {
-					return tag(t, attributes);
+				return function(contents, attributes) {
+					return tag(t, contents, attributes);
 				}
 			})(tags[i]);
 		};
@@ -57,13 +57,13 @@ var htmlCanvas = (function() {
 		var element;
 		var attributes = 'href id media rel src style title type'.split(' ');
 		var events = 'blur change click focus keydown keypress keyup'.split(' ');
-
+	
 
 		if(spec.jQuery) {
 			element = spec.jQuery.get(0);
 		} else {
 			element = createElement(spec.tag);
-		}
+		};
 
 		if(spec.attributes) {
 			for(var i in spec.attributes) {
@@ -71,6 +71,9 @@ var htmlCanvas = (function() {
 			}
 		};
 
+		if(spec.contents) {
+			append(spec.contents);
+		};
 
 		/* DOM elements creation */
 

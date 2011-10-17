@@ -6,7 +6,7 @@ function counter() {
 	var h1;
 
 	that.renderOn = function(html) {
-		h1 = html.h1().with(count.toString());
+		h1 = html.h1(count.toString());
 		html.button()
 			.with('+')
 			.click(function() {increase()});
