@@ -19,23 +19,18 @@ var htmlCanvas = (function() {
 
 		/* Adding new tags */
 
-		function newTag (tag, contents, attributes) {
-			return tagBrush({canvas: that, tag: tag, contents: contents, attributes: attributes});
-		};
-
-		function tag(string, attributes) {
-			var t = newTag(string, attributes);
+		function tag(tag, contents, attributes) {
+			var t = tagBrush({canvas: that, tag: tag, contents: contents, attributes: attributes});
 			that.root.addBrush(t);
 			return t;
 		};
 
 		/* Public API */
 
-		that.newTag = newTag;
-
 		for(var i=0; i < tags.length; i++) {
 			that[tags[i]] = (function(t) {
 				return function(contents, attributes) {
+					console.log(attributes);
 					return tag(t, contents, attributes);
 				}
 			})(tags[i]);
