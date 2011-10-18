@@ -36,8 +36,8 @@ var htmlCanvas = (function() {
 			})(tags[i]);
 		};
 
-		that.with = function(obj) {
-			that.root.with(obj);
+		that.render = function(obj) {
+			that.root.render(obj);
 		};
 
 		return that;
@@ -122,7 +122,7 @@ var htmlCanvas = (function() {
 			return element;
 		};
 
-		that.with = function(object) {
+		that.render = function(object) {
 			append(object);
 			return that;
 		};

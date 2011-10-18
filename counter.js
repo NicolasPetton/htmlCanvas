@@ -8,10 +8,10 @@ function counter() {
 	that.renderOn = function(html) {
 		h1 = html.h1(count.toString());
 		html.button()
-			.with('+')
+			.render('+')
 			.click(function() {increase()});
 		html.button()
-			.with('-')
+			.render('-')
 			.click(function() {decrease()});
 	};
 
