@@ -72,6 +72,7 @@ var htmlCanvas = (function() {
 
 		/* DOM elements creation */
 
+
 		function createElement(string) {
 			return document.createElement(string);
 		};
@@ -88,10 +89,10 @@ var htmlCanvas = (function() {
 			} else if(typeof object === "function") {
 				appendFunction(object);
 			} else {
-				appendBrush(object);
+				object.appendToBrush(that);
 			}
 		};
-		
+
 		function appendBrush(aTagBrush) {
 			appendChild(aTagBrush.element());
 		};
@@ -126,6 +127,10 @@ var htmlCanvas = (function() {
 			append(object);
 			return that;
 		};
+
+		that.appendToBrush = function(aTagBrush) {
+			aTagBrush.addBrush(that);
+		}
 
 		that.addBrush = appendBrush;
 
@@ -196,6 +201,10 @@ var htmlCanvas = (function() {
 				jquery = aJQuery;
 			}
 			that.renderOn(htmlCanvas(jquery));
+		};
+
+		that.appendToBrush = function(aTagBrush) {
+			that.appendTo(aTagBrush.asJQuery());
 		};
 
 		/* Concrete widgets should override this function.
