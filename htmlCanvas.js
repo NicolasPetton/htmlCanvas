@@ -11,10 +11,16 @@ var htmlCanvas = (function() {
 	
 	/* The HTML Canvas object. */
 	var htmlCanvas = function(aJQuery) {
-		var that = {};
-		var tags = ('h1 h2 h3 h4 h5 h6 a br button canvas code div form img input' +
-			' li link ol option p pre script select span span style table td' +
-			' textarea th tr ul').split(' ');
+		var that   = {};
+		var tags   = ('a abbr acronym address area article aside audio b bdi bdo big ' +
+    		'blockquote body br button canvas caption cite code col colgroup command ' +
+    		'datalist dd del details dfn div dl dt em embed fieldset figcaption figure ' +
+    		'footer form frame frameset h1 h2 h3 h4 h5 h6 hr head header hgroup html i ' +
+    		'iframe img input ins kbd keygen label legend li link map mark meta meter ' +
+    		'nav noscript object ol optgroup option output p param pre progress q rp rt' +
+    		'ruby samp script section select small source span strong style sub summary' +
+    		'sup table tbody td textarea tfoot th thead time title tr track tt ul var' +
+    		'video wbr').split(' ')
 		that.root = tagBrush({canvas: that, jQuery: aJQuery});
 
 		/* Adding new tags */
@@ -46,11 +52,14 @@ var htmlCanvas = (function() {
 	/* A tag brush object represents a DOM element */
 	var tagBrush = function(spec) {
 
-		var that = {};
-		var canvas = spec.canvas;
-		var element;
+		var that       = {};
+		var canvas     = spec.canvas;
 		var attributes = 'href id media rel src style title type'.split(' ');
-		var events = 'blur change click focus keydown keypress keyup'.split(' ');
+		var events     = ('blur focus focusin focusout load resize scroll unload ' +
+                  		'click dblclick mousedown mouseup mousemove mouseover ' +
+                  		'mouseout mouseenter mouseleave change select submit ' +
+                  		'keydown keypress keyup error').split(' ');
+		var element;
 	
 
 		if(spec.jQuery) {
