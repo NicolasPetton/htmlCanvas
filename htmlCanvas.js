@@ -30,7 +30,6 @@ var htmlCanvas = (function() {
 		for(var i=0; i < tags.length; i++) {
 			that[tags[i]] = (function(t) {
 				return function(contents, attributes) {
-					console.log(attributes);
 					return tag(t, contents, attributes);
 				}
 			})(tags[i]);
