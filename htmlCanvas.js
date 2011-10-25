@@ -114,8 +114,10 @@ var htmlCanvas = (function() {
 			return element;
 		};
 
-		that.render = function(object) {
-			append(object);
+		that.render = function() {
+			for(var i in arguments) {
+				append(arguments[i]);
+			};
 			return that;
 		};
 
