@@ -11,8 +11,8 @@ var htmlCanvas = (function() {
 	
 	/* The HTML Canvas object. */
 	var htmlCanvas = function(aJQuery) {
-		var that   = {};
-		var tags   = ('a abbr acronym address area article aside audio b bdi bdo big ' +
+		var that = {};
+		var tags = ('a abbr acronym address area article aside audio b bdi bdo big ' +
     		'blockquote body br button canvas caption cite code col colgroup command ' +
     		'datalist dd del details dfn div dl dt em embed fieldset figcaption figure ' +
     		'footer form frame frameset h1 h2 h3 h4 h5 h6 hr head header hgroup html i ' +
@@ -23,20 +23,18 @@ var htmlCanvas = (function() {
     		'video wbr').split(' ')
 		that.root = tagBrush({canvas: that, jQuery: aJQuery});
 
-		/* Adding new tags */
 
-		function tag(tag, contents, attributes) {
+		/* Public API */
+		that.tag = function(tag, contents, attributes) {
 			var t = tagBrush({canvas: that, tag: tag, contents: contents, attributes: attributes});
 			that.root.addBrush(t);
 			return t;
 		};
 
-		/* Public API */
-
 		for(var i=0; i < tags.length; i++) {
 			that[tags[i]] = (function(t) {
 				return function(contents, attributes) {
-					return tag(t, contents, attributes);
+					return that.tag(t, contents, attributes);
 				}
 			})(tags[i]);
 		};
@@ -78,8 +76,8 @@ var htmlCanvas = (function() {
 			append(spec.contents);
 		};
 
-		/* DOM elements creation */
 
+		/* DOM elements creation */
 
 		function createElement(string) {
 			return document.createElement(string);
@@ -88,6 +86,7 @@ var htmlCanvas = (function() {
 		function createTextNode(string) {
 			return document.createTextNode(string);
 		};
+
 
 		/* Appending objects to the brush */
 
