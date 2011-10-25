@@ -25,16 +25,17 @@ var htmlCanvas = (function() {
 
 
 		/* Public API */
-		that.tag = function(tag, contents, attributes) {
-			var t = tagBrush({canvas: that, tag: tag, contents: contents, attributes: attributes});
+		that.tag = function(tag, children) {
+			var t = tagBrush({canvas: that, tag: tag, children: children});
 			that.root.addBrush(t);
 			return t;
 		};
 
 		for(var i=0; i < tags.length; i++) {
 			that[tags[i]] = (function(t) {
-				return function(contents, attributes) {
-					return that.tag(t, contents, attributes);
+				return function() {
+					var args = Array.prototype.slice.call(arguments);
+					return that.tag(t, arguments);
 				}
 			})(tags[i]);
 		};
@@ -59,23 +60,6 @@ var htmlCanvas = (function() {
                   		'keydown keypress keyup error').split(' ');
 		var element;
 	
-
-		if(spec.jQuery) {
-			element = spec.jQuery.get(0);
-		} else {
-			element = createElement(spec.tag);
-		};
-
-		if(spec.attributes) {
-			for(var i in spec.attributes) {
-					element.setAttribute(i, spec.attributes[i]);
-			}
-		};
-
-		if(spec.contents) {
-			append(spec.contents);
-		};
-
 
 		/* DOM elements creation */
 
@@ -190,6 +174,24 @@ var htmlCanvas = (function() {
 		that.asJQuery = function() {
 			return jQuery(that.element());
 		};
+
+
+		/* TagBrush initialization */
+
+
+		if(spec.jQuery) {
+			element = spec.jQuery.get(0);
+		} else {
+			element = createElement(spec.tag);
+		};
+
+
+		if(spec.children) {
+			for(var i in spec.children) {
+				append(spec.children[i]);
+			}
+		};
+
 
 		return that;
 	};
