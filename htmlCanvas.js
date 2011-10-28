@@ -53,7 +53,7 @@ var htmlCanvas = (function() {
 
 		var that       = {};
 		var canvas     = spec.canvas;
-		var attributes = 'href id media rel src style title type'.split(' ');
+		var attributes = 'href for id media rel src style title type'.split(' ');
 		var events     = ('blur focus focusin focusout load resize scroll unload ' +
                   		'click dblclick mousedown mouseup mousemove mouseover ' +
                   		'mouseout mouseenter mouseleave change select submit ' +
