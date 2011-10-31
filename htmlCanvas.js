@@ -35,7 +35,7 @@ var htmlCanvas = (function() {
 			that[tags[i]] = (function(t) {
 				return function() {
 					var args = Array.prototype.slice.call(arguments);
-					return that.tag(t, arguments);
+					return that.tag(t, args);
 				}
 			})(tags[i]);
 		};
@@ -115,8 +115,9 @@ var htmlCanvas = (function() {
 		};
 
 		that.render = function() {
-			for(var i in arguments) {
-				append(arguments[i]);
+			var args = Array.prototype.slice.call(arguments);
+			for(var i in args) {
+				append(args[i]);
 			};
 			return that;
 		};
