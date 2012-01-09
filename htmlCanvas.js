@@ -116,7 +116,7 @@ var htmlCanvas = (function() {
 
 		that.render = function() {
 			var args = Array.prototype.slice.call(arguments);
-			for(var i in args) {
+			for(var i=0; i < args.length; i++) {
 				append(args[i]);
 			};
 			return that;
