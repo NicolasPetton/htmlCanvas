@@ -190,7 +190,8 @@ var htmlCanvas = (function() {
 
 
 		if(spec.children) {
-			for(var i in spec.children) {
+			console.log(spec.children);
+			for(var i=0; i < spec.children.length; i++) {
 				append(spec.children[i]);
 			}
 		};
